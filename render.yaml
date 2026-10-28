@@ -1,0 +1,21 @@
+# ========================================================
+# RENDER.COM 1-CLICK DEPLOY CONFIGURATION
+# ========================================================
+services:
+  - type: web
+    name: dhudabhai-accounting
+    env: node
+    plan: starter
+    buildCommand: npm install --omit=dev
+    startCommand: node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DHUDABHAI_DATA_DIR
+        value: /var/data/dhudabhai
+    disk:
+      name: dhudabhai-data
+      mountPath: /var/data/dhudabhai
+      sizeGB: 5
